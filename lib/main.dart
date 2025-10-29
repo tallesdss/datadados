@@ -46,247 +46,258 @@ class InstagramProfileScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Profile Stats Section
-                    Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Row(
-                        children: [
-                          // Followers
-                          Expanded(
-                            child: Column(
-                              children: [
-                                const Text(
-                                  '23.6K',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
+                    // Centered profile info for large screens
+                    Center(
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(maxWidth: 500),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Profile Stats Section
+                            Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: Row(
+                                children: [
+                                  // Followers
+                                  Expanded(
+                                    child: Column(
+                                      children: [
+                                        const Text(
+                                          '23.6K',
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text(
+                                          'Followers',
+                                          style: TextStyle(
+                                            fontSize: 13,
+                                            color: Colors.grey[600],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  'Followers',
-                                  style: TextStyle(
-                                    fontSize: 13,
-                                    color: Colors.grey[600],
+                                  
+                                  // Profile Picture with Story Ring
+                                  Container(
+                                    padding: const EdgeInsets.all(3),
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      gradient: const LinearGradient(
+                                        colors: [
+                                          Color(0xFFFCAF45),
+                                          Color(0xFFFD1D1D),
+                                          Color(0xFFE1306C),
+                                        ],
+                                      ),
+                                    ),
+                                    child: Container(
+                                      padding: const EdgeInsets.all(3),
+                                      decoration: const BoxDecoration(
+                                        color: Colors.white,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: ClipOval(
+                                        child: Image.network(
+                                          'https://via.placeholder.com/150',
+                                          width: 80,
+                                          height: 80,
+                                          fit: BoxFit.cover,
+                                          errorBuilder: (context, error, stackTrace) {
+                                            return Container(
+                                              width: 80,
+                                              height: 80,
+                                              color: Colors.grey[300],
+                                              child: Icon(
+                                                FeatherIcons.user,
+                                                color: Colors.grey[600],
+                                                size: 36,
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          
-                          // Profile Picture with Story Ring
-                          Container(
-                            padding: const EdgeInsets.all(3),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              gradient: const LinearGradient(
-                                colors: [
-                                  Color(0xFFFCAF45),
-                                  Color(0xFFFD1D1D),
-                                  Color(0xFFE1306C),
+                                  
+                                  // Following
+                                  Expanded(
+                                    child: Column(
+                                      children: [
+                                        const Text(
+                                          '488',
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text(
+                                          'Following',
+                                          style: TextStyle(
+                                            fontSize: 13,
+                                            color: Colors.grey[600],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
-                            child: Container(
-                              padding: const EdgeInsets.all(3),
-                              decoration: const BoxDecoration(
-                                color: Colors.white,
-                                shape: BoxShape.circle,
-                              ),
-                              child: ClipOval(
-                                child: Image.network(
-                                  'https://via.placeholder.com/150',
-                                  width: 80,
-                                  height: 80,
-                                  fit: BoxFit.cover,
-                                  errorBuilder: (context, error, stackTrace) {
-                                    return Container(
-                                      width: 80,
-                                      height: 80,
-                                      color: Colors.grey[300],
-                                      child: Icon(
-                                        FeatherIcons.user,
-                                        color: Colors.grey[600],
-                                        size: 36,
+                            
+                            // Name and Bio
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Row(
+                                    children: [
+                                      Text(
+                                        'Manuel Rovira',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                        ),
                                       ),
-                                    );
-                                  },
-                                ),
-                              ),
-                            ),
-                          ),
-                          
-                          // Following
-                          Expanded(
-                            child: Column(
-                              children: [
-                                const Text(
-                                  '488',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
+                                      SizedBox(width: 8),
+                                      Text(
+                                        'Photographer',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.grey,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ),
-                                Text(
-                                  'Following',
-                                  style: TextStyle(
-                                    fontSize: 13,
-                                    color: Colors.grey[600],
+                                  const SizedBox(height: 4),
+                                  RichText(
+                                    text: TextSpan(
+                                      style: TextStyle(
+                                        fontSize: 13,
+                                        color: Colors.grey[800],
+                                        height: 1.3,
+                                      ),
+                                      children: const [
+                                        TextSpan(
+                                          text: 'Like to travel and shoot cinematic and b/w photos.\n',
+                                        ),
+                                        TextSpan(
+                                          text: 'Tools - Capture One for Raw ',
+                                        ),
+                                        TextSpan(
+                                          text: '@photolove21',
+                                          style: TextStyle(
+                                            color: Color(0xFF00376B),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    
-                    // Name and Bio
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Row(
-                            children: [
-                              Text(
-                                'Manuel Rovira',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              SizedBox(width: 8),
-                              Text(
-                                'Photographer',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 4),
-                          RichText(
-                            text: TextSpan(
-                              style: TextStyle(
-                                fontSize: 13,
-                                color: Colors.grey[800],
-                                height: 1.3,
-                              ),
-                              children: const [
-                                TextSpan(
-                                  text: 'Like to travel and shoot cinematic and b/w photos.\n',
-                                ),
-                                TextSpan(
-                                  text: 'Tools - Capture One for Raw ',
-                                ),
-                                TextSpan(
-                                  text: '@photolove21',
-                                  style: TextStyle(
-                                    color: Color(0xFF00376B),
+                            
+                            const SizedBox(height: 16),
+                            
+                            // Action Buttons
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: OutlinedButton(
+                                      onPressed: () {},
+                                      style: OutlinedButton.styleFrom(
+                                        padding: const EdgeInsets.symmetric(vertical: 8),
+                                        side: BorderSide(color: Colors.grey[300]!),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(8),
+                                        ),
+                                      ),
+                                      child: const Text(
+                                        'Edit profile',
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ],
+                                  const SizedBox(width: 8),
+                                  Expanded(
+                                    child: OutlinedButton(
+                                      onPressed: () {},
+                                      style: OutlinedButton.styleFrom(
+                                        padding: const EdgeInsets.symmetric(vertical: 8),
+                                        side: BorderSide(color: Colors.grey[300]!),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(8),
+                                        ),
+                                      ),
+                                      child: const Text(
+                                        'Statistics',
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Expanded(
+                                    child: ElevatedButton(
+                                      onPressed: () {},
+                                      style: ElevatedButton.styleFrom(
+                                        padding: const EdgeInsets.symmetric(vertical: 8),
+                                        backgroundColor: const Color(0xFF0095F6),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(8),
+                                        ),
+                                        elevation: 0,
+                                      ),
+                                      child: const Text(
+                                        'Contact',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                            
+                            const SizedBox(height: 16),
+                            
+                            // Story Highlights
+                            SizedBox(
+                              height: 100,
+                              child: ListView(
+                                scrollDirection: Axis.horizontal,
+                                padding: const EdgeInsets.symmetric(horizontal: 16),
+                                children: [
+                                  _buildHighlight(FeatherIcons.plusCircle, 'New'),
+                                  _buildHighlight(FeatherIcons.navigation, 'Travels'),
+                                  _buildHighlight(FeatherIcons.smile, 'Cool'),
+                                  _buildHighlight(FeatherIcons.heart, 'Scot'),
+                                  _buildHighlight(FeatherIcons.umbrella, 'Holidays'),
+                                  _buildHighlight(FeatherIcons.coffee, 'D...'),
+                                ],
+                              ),
+                            ),
+                            
+                            const SizedBox(height: 8),
+                          ],
+                        ),
                       ),
                     ),
-                    
-                    const SizedBox(height: 16),
-                    
-                    // Action Buttons
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: OutlinedButton(
-                              onPressed: () {},
-                              style: OutlinedButton.styleFrom(
-                                padding: const EdgeInsets.symmetric(vertical: 8),
-                                side: BorderSide(color: Colors.grey[300]!),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                              ),
-                              child: const Text(
-                                'Edit profile',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          Expanded(
-                            child: OutlinedButton(
-                              onPressed: () {},
-                              style: OutlinedButton.styleFrom(
-                                padding: const EdgeInsets.symmetric(vertical: 8),
-                                side: BorderSide(color: Colors.grey[300]!),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                              ),
-                              child: const Text(
-                                'Statistics',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          Expanded(
-                            child: ElevatedButton(
-                              onPressed: () {},
-                              style: ElevatedButton.styleFrom(
-                                padding: const EdgeInsets.symmetric(vertical: 8),
-                                backgroundColor: const Color(0xFF0095F6),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                elevation: 0,
-                              ),
-                              child: const Text(
-                                'Contact',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    
-                    const SizedBox(height: 16),
-                    
-                    // Story Highlights
-                    SizedBox(
-                      height: 100,
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        children: [
-                          _buildHighlight(FeatherIcons.plusCircle, 'New'),
-                          _buildHighlight(FeatherIcons.navigation, 'Travels'),
-                          _buildHighlight(FeatherIcons.smile, 'Cool'),
-                          _buildHighlight(FeatherIcons.heart, 'Scot'),
-                          _buildHighlight(FeatherIcons.umbrella, 'Holidays'),
-                          _buildHighlight(FeatherIcons.coffee, 'D...'),
-                        ],
-                      ),
-                    ),
-                    
-                    const SizedBox(height: 8),
                     
                     // Content Navigation
                     Container(
