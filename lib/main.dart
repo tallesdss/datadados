@@ -349,9 +349,11 @@ class InstagramProfileScreen extends StatelessWidget {
                       topRight: Radius.circular(22),
                     ),
                     child: Container(
+                      height: 90,
                       color: Colors.white,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           _buildBottomNavItem(FeatherIcons.home, false),
                           _buildBottomNavItem(FeatherIcons.search, false),
@@ -457,7 +459,7 @@ class InstagramProfileScreen extends StatelessWidget {
   
   Widget _buildBottomNavItem(IconData icon, bool isActive) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12),
+      padding: const EdgeInsets.only(top: 12),
       child: Icon(
         icon,
         size: 28,
