@@ -1,122 +1,455 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+class InstagramProfileScreen extends StatelessWidget {
+  const InstagramProfileScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
+      backgroundColor: Colors.white,
+      body: SafeArea(
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+          children: [
+            // Top Navigation Bar
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Icon(FeatherIcons.settings, size: 24),
+                  Row(
+                    children: [
+                      const Text(
+                        'manuelroviradesign',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(width: 4),
+                      const Icon(FeatherIcons.chevronDown, size: 20),
+                    ],
+                  ),
+                  const Icon(FeatherIcons.menu, size: 24),
+                ],
+              ),
+            ),
+            
+            // Scrollable Content
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Profile Stats Section
+                    Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Row(
+                        children: [
+                          // Followers
+                          Expanded(
+                            child: Column(
+                              children: [
+                                const Text(
+                                  '23.6K',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  'Followers',
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    color: Colors.grey[600],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          
+                          // Profile Picture with Story Ring
+                          Container(
+                            padding: const EdgeInsets.all(3),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              gradient: const LinearGradient(
+                                colors: [
+                                  Color(0xFFFCAF45),
+                                  Color(0xFFFD1D1D),
+                                  Color(0xFFE1306C),
+                                ],
+                              ),
+                            ),
+                            child: Container(
+                              padding: const EdgeInsets.all(3),
+                              decoration: const BoxDecoration(
+                                color: Colors.white,
+                                shape: BoxShape.circle,
+                              ),
+                              child: ClipOval(
+                                child: Image.network(
+                                  'https://via.placeholder.com/150',
+                                  width: 80,
+                                  height: 80,
+                                  fit: BoxFit.cover,
+                                  errorBuilder: (context, error, stackTrace) {
+                                    return Container(
+                                      width: 80,
+                                      height: 80,
+                                      color: Colors.grey[300],
+                                      child: Icon(
+                                        FeatherIcons.user,
+                                        color: Colors.grey[600],
+                                        size: 36,
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                          ),
+                          
+                          // Following
+                          Expanded(
+                            child: Column(
+                              children: [
+                                const Text(
+                                  '488',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  'Following',
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    color: Colors.grey[600],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    
+                    // Name and Bio
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Row(
+                            children: [
+                              Text(
+                                'Manuel Rovira',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              SizedBox(width: 8),
+                              Text(
+                                'Photographer',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 4),
+                          RichText(
+                            text: TextSpan(
+                              style: TextStyle(
+                                fontSize: 13,
+                                color: Colors.grey[800],
+                                height: 1.3,
+                              ),
+                              children: const [
+                                TextSpan(
+                                  text: 'Like to travel and shoot cinematic and b/w photos.\n',
+                                ),
+                                TextSpan(
+                                  text: 'Tools - Capture One for Raw ',
+                                ),
+                                TextSpan(
+                                  text: '@photolove21',
+                                  style: TextStyle(
+                                    color: Color(0xFF00376B),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    
+                    const SizedBox(height: 16),
+                    
+                    // Action Buttons
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: OutlinedButton(
+                              onPressed: () {},
+                              style: OutlinedButton.styleFrom(
+                                padding: const EdgeInsets.symmetric(vertical: 8),
+                                side: BorderSide(color: Colors.grey[300]!),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                              ),
+                              child: const Text(
+                                'Edit profile',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: OutlinedButton(
+                              onPressed: () {},
+                              style: OutlinedButton.styleFrom(
+                                padding: const EdgeInsets.symmetric(vertical: 8),
+                                side: BorderSide(color: Colors.grey[300]!),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                              ),
+                              child: const Text(
+                                'Statistics',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: ElevatedButton(
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                padding: const EdgeInsets.symmetric(vertical: 8),
+                                backgroundColor: const Color(0xFF0095F6),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                elevation: 0,
+                              ),
+                              child: const Text(
+                                'Contact',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    
+                    const SizedBox(height: 16),
+                    
+                    // Story Highlights
+                    SizedBox(
+                      height: 100,
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        children: [
+                          _buildHighlight(FeatherIcons.plusCircle, 'New'),
+                          _buildHighlight(FeatherIcons.navigation, 'Travels'),
+                          _buildHighlight(FeatherIcons.smile, 'Cool'),
+                          _buildHighlight(FeatherIcons.heart, 'Scot'),
+                          _buildHighlight(FeatherIcons.umbrella, 'Holidays'),
+                          _buildHighlight(FeatherIcons.coffee, 'D...'),
+                        ],
+                      ),
+                    ),
+                    
+                    const SizedBox(height: 8),
+                    
+                    // Content Navigation
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border(
+                          top: BorderSide(color: Colors.grey[300]!),
+                        ),
+                      ),
+                      child: Row(
+                        children: [
+                          _buildNavTab(FeatherIcons.grid, true),
+                          _buildNavTab(FeatherIcons.video, false),
+                          _buildNavTab(FeatherIcons.user, false),
+                          _buildNavTab(FeatherIcons.playCircle, false),
+                          _buildNavTab(FeatherIcons.link, false),
+                          _buildNavTab(FeatherIcons.bookmark, false),
+                        ],
+                      ),
+                    ),
+                    
+                    // Photo Grid
+                    GridView.count(
+                      crossAxisCount: 3,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      mainAxisSpacing: 2,
+                      crossAxisSpacing: 2,
+                      children: [
+                        _buildGridItem('https://via.placeholder.com/300/4FC3F7'),
+                        _buildGridItem('https://via.placeholder.com/300/FFD54F'),
+                        _buildGridItem('https://via.placeholder.com/300/64B5F6'),
+                        _buildGridItem('https://via.placeholder.com/300/FFB74D'),
+                        _buildGridItem('https://via.placeholder.com/300/9575CD'),
+                        _buildGridItem('https://via.placeholder.com/300/FFA726'),
+                        _buildGridItem('https://via.placeholder.com/300/81C784'),
+                        _buildGridItem('https://via.placeholder.com/300/E57373'),
+                        _buildGridItem('https://via.placeholder.com/300/90CAF9'),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            
+            // Bottom Navigation Bar
+            Container(
+              decoration: BoxDecoration(
+                border: Border(
+                  top: BorderSide(color: Colors.grey[300]!),
+                ),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  _buildBottomNavItem(FeatherIcons.home, false),
+                  _buildBottomNavItem(FeatherIcons.search, false),
+                  _buildBottomNavItem(FeatherIcons.plusSquare, false),
+                  Stack(
+                    children: [
+                      _buildBottomNavItem(FeatherIcons.heart, false),
+                      Positioned(
+                        right: 8,
+                        top: 8,
+                        child: Container(
+                          width: 8,
+                          height: 8,
+                          decoration: const BoxDecoration(
+                            color: Colors.red,
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  _buildBottomNavItem(FeatherIcons.user, true),
+                ],
+              ),
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+  
+  Widget _buildHighlight(IconData icon, String label) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 16),
+      child: Column(
+        children: [
+          Container(
+            width: 64,
+            height: 64,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.grey[200],
+              border: Border.all(color: Colors.grey[300]!, width: 1),
+            ),
+            child: Icon(icon, size: 28, color: Colors.grey[700]),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            label,
+            style: const TextStyle(
+              fontSize: 12,
+              color: Colors.black,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+  
+  Widget _buildNavTab(IconData icon, bool isActive) {
+    return Expanded(
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(
+              color: isActive ? Colors.black : Colors.transparent,
+              width: 1,
+            ),
+          ),
+        ),
+        child: Icon(
+          icon,
+          size: 24,
+          color: isActive ? Colors.black : Colors.grey[400],
+        ),
+      ),
+    );
+  }
+  
+  Widget _buildGridItem(String imageUrl) {
+    return Container(
+      color: Colors.grey[300],
+      child: Image.network(
+        imageUrl,
+        fit: BoxFit.cover,
+        errorBuilder: (context, error, stackTrace) {
+          return Center(
+            child: Icon(
+              FeatherIcons.image,
+              color: Colors.grey[600],
+              size: 28,
+            ),
+          );
+        },
+      ),
+    );
+  }
+  
+  Widget _buildBottomNavItem(IconData icon, bool isActive) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 12),
+      child: Icon(
+        icon,
+        size: 28,
+        color: isActive ? Colors.black : Colors.grey[600],
+      ),
+    );
+  }
+}
+
+void main() {
+  runApp(const MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: InstagramProfileScreen(),
+  ));
 }
