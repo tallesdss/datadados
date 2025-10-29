@@ -9,8 +9,11 @@ class InstagramProfileScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Column(
+        child: Stack(
           children: [
+            // Content behind (scrollable area)
+            Column(
+              children: [
             // Top Navigation Bar
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -39,6 +42,7 @@ class InstagramProfileScreen extends StatelessWidget {
             // Scrollable Content
             Expanded(
               child: SingleChildScrollView(
+                padding: const EdgeInsets.only(bottom: 84),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -326,39 +330,55 @@ class InstagramProfileScreen extends StatelessWidget {
                 ),
               ),
             ),
-            
-            // Bottom Navigation Bar
-            Container(
-              decoration: BoxDecoration(
-                border: Border(
-                  top: BorderSide(color: Colors.grey[300]!),
-                ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  _buildBottomNavItem(FeatherIcons.home, false),
-                  _buildBottomNavItem(FeatherIcons.search, false),
-                  _buildBottomNavItem(FeatherIcons.plusSquare, false),
-                  Stack(
-                    children: [
-                      _buildBottomNavItem(FeatherIcons.heart, false),
-                      Positioned(
-                        right: 8,
-                        top: 8,
-                        child: Container(
-                          width: 8,
-                          height: 8,
-                          decoration: const BoxDecoration(
-                            color: Colors.red,
-                            shape: BoxShape.circle,
+              ],
+            ),
+
+            // Floating, fixed Bottom Navigation Bar
+            Positioned(
+              left: 0,
+              right: 0,
+              bottom: 0,
+              child: SafeArea(
+                top: false,
+                child: Material(
+                  elevation: 8,
+                  color: Colors.transparent,
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(22),
+                      topRight: Radius.circular(22),
+                    ),
+                    child: Container(
+                      color: Colors.white,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          _buildBottomNavItem(FeatherIcons.home, false),
+                          _buildBottomNavItem(FeatherIcons.search, false),
+                          _buildBottomNavItem(FeatherIcons.plusSquare, false),
+                          Stack(
+                            children: [
+                              _buildBottomNavItem(FeatherIcons.heart, false),
+                              Positioned(
+                                right: 8,
+                                top: 8,
+                                child: Container(
+                                  width: 8,
+                                  height: 8,
+                                  decoration: const BoxDecoration(
+                                    color: Colors.red,
+                                    shape: BoxShape.circle,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
+                          _buildBottomNavItem(FeatherIcons.user, true),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-                  _buildBottomNavItem(FeatherIcons.user, true),
-                ],
+                ),
               ),
             ),
           ],
